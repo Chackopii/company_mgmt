@@ -1,0 +1,74 @@
+{% extends 'company/admin_base.html' %}
+{% load static %}
+{% block content %}
+{%include 'company/admin_dashboard_cards.html'%}
+
+<br><br><br>
+<div class="container">
+  <div class="row">
+    <div class="panel panel-primary col-md-5" style="margin-left:2%; margin-top: 10px;">
+      <div class="panel-heading" style="text-align:center; margin-top: 10px;">
+        <h6 class="panel-title">Recent Managers</h6>
+      </div>
+      <table class="table table-hover table-striped" id="dev-table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Contact</th>
+            <th>Status</th>
+
+          </tr>
+        </thead>
+        {% for d in managers %}
+        <tr>
+          <td> {{d.get_name}}</td>
+          <td>{{d.department}}</td>
+          <td>{{d.mobile}}</td>
+          {%if d.status%}
+          <td> <span class="label label-primary">Hired</span></td>
+          {% else %}
+          <td> <span class="label label-success">On Hold</span></td>
+          {% endif %}
+
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <div class="panel panel-primary col-md-5" style="margin-left:5%; margin-top: 10px;">
+      <div class="panel-heading" style="text-align:center; margin-top: 10px;">
+        <h6 class="panel-title">Recent Employee</h6>
+      </div>
+      <table class="table table-hover table-striped" id="dev-table" >
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Contact</th>
+            <th>Address</th>
+            <th>Status</th>
+
+          </tr>
+        </thead>
+        {% for p in employees %}
+        <tr>
+          <td> {{p.get_name}}</td>
+          <td>{{p.department}}</td>
+          <td>{{p.mobile}}</td>
+          <td>{{p.address}}</td>
+          {%if p.status%}
+          <td> <span class="label label-primary">Hired</span></td>
+          {% else %}
+          <td> <span class="label label-success">On Hold</span></td>
+          {% endif %}
+
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
