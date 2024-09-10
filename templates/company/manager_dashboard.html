@@ -1,0 +1,41 @@
+{% extends 'company/manager_base.html' %}
+{% load static %}
+{% block content %}
+{% include 'company/manager_dashboard_cards.html' %}
+<br><br><br><br>
+<div class="container">
+  <div class="row">
+    <div class="panel panel-primary" style="margin-left:2%;">
+      <div class="panel-heading" style="text-align:center;">
+        <h6 class="panel-title">Recent Tasks Assigned To You</h6>
+      </div>
+      <table class="table table-hover table-striped" id="dev-table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Employee Name</th>
+            <th>Picture</th>
+            <th>Task Description</th>
+            <th>Contact</th>
+            <th>Address</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        {% for task, employee in tasks %}
+        <tr>
+          <td>{{employee.get_name}}</td>
+          <td> <img src="{{employee.profile_pic.url}}" alt="Profile Pic" height="40px" width="40px" /></td>
+          <td>{{task.description}}</td>
+          <td>{{employee.mobile}}</td>
+          <td>{{employee.address}}</td>
+          <td>{{task.deadline}}</td>
+          <td>{{task.get_priority_display}}</td>
+          <td>{{task.get_status_display}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}
